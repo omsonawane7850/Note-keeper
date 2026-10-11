@@ -1,0 +1,83 @@
+.app-header {
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.app-subtitle {
+  margin: 5px 0 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.notes-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.notes-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.notes-toolbar h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.notes-toolbar p {
+  margin: 5px 0 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.add-note-btn {
+  padding: 8px 14px;
+}
+
+.search-container {
+  max-width: 450px;
+  margin-bottom: 30px;
+}
+
+.empty-state {
+  padding: 40px 20px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.empty-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.empty-state h3 {
+  font-size: 20px;
+}
+
+.empty-state p {
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 576px) {
+  .notes-toolbar {
+    gap: 12px;
+  }
+
+  .notes-toolbar h2 {
+    font-size: 20px;
+  }
+
+  .add-note-btn {
+    flex-shrink: 0;
+  }
+}
