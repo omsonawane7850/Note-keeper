@@ -1,74 +1,242 @@
+/* Header */
+
 .app-header {
   padding: 20px 0;
-  border-bottom: 1px solid #ddd;
+  background-color: #111827;
+  border-bottom: 1px solid #2d3748;
 }
 
 .app-title {
   margin: 0;
   font-size: 26px;
   font-weight: 600;
+  color: #f9fafb;
 }
 
 .app-subtitle {
   margin: 5px 0 0;
-  color: #666;
+  color: #9ca3af;
   font-size: 14px;
 }
+
+/* Main Container */
 
 .notes-container {
   padding-top: 30px;
   padding-bottom: 30px;
+  color: #f9fafb;
 }
+
+/* Toolbar */
 
 .notes-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   margin-bottom: 20px;
 }
 
 .notes-toolbar h2 {
   margin: 0;
   font-size: 22px;
+  color: #f9fafb;
 }
 
 .notes-toolbar p {
   margin: 5px 0 0;
-  color: #666;
+  color: #9ca3af;
   font-size: 14px;
 }
 
+/* Add Note Button */
+
 .add-note-btn {
   padding: 8px 14px;
+  color: #ffffff;
+  background-color: #6366f1;
+  border: 1px solid #6366f1;
 }
+
+.add-note-btn:hover {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+}
+
+/* Search */
 
 .search-container {
   max-width: 450px;
   margin-bottom: 30px;
 }
 
+.search-input {
+  padding: 11px 14px;
+  color: #f9fafb;
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 8px;
+}
+
+.search-input::placeholder {
+  color: #9ca3af;
+}
+
+.search-input:focus {
+  color: #f9fafb;
+  background-color: #1f2937;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 20%);
+}
+
+/* Empty State */
+
 .empty-state {
   padding: 40px 20px;
   text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  background-color: #111827;
+  border: 1px solid #374151;
+  border-radius: 10px;
 }
 
 .empty-icon {
-  font-size: 36px;
   margin-bottom: 10px;
+  font-size: 36px;
 }
 
 .empty-state h3 {
   font-size: 20px;
+  color: #f9fafb;
 }
 
 .empty-state p {
-  color: #666;
+  color: #9ca3af;
   font-size: 14px;
 }
 
+.empty-state .btn-outline-primary {
+  color: #a5b4fc;
+  border-color: #6366f1;
+}
+
+.empty-state .btn-outline-primary:hover {
+  color: #ffffff;
+  background-color: #4f46e5;
+}
+
+/* Note Form */
+
+.form-container {
+  max-width: 650px;
+}
+
+.note-form {
+  padding: 24px;
+  color: #f9fafb;
+  background-color: #111827;
+  border: 1px solid #374151;
+  border-radius: 12px;
+}
+
+.note-form h3 {
+  margin-bottom: 24px;
+  color: #f9fafb;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.note-form .form-label {
+  color: #e5e7eb;
+}
+
+.note-form .form-control {
+  padding: 11px 12px;
+  color: #f9fafb;
+  background-color: #1f2937;
+  border: 1px solid #4b5563;
+}
+
+.note-form .form-control::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+.note-form .form-control:focus {
+  color: #f9fafb;
+  background-color: #1f2937;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 20%);
+}
+
+.note-form .btn-primary {
+  color: #ffffff;
+  background-color: #6366f1;
+  border-color: #6366f1;
+}
+
+.note-form .btn-primary:hover {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+}
+
+/* Notes Grid */
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.note-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 180px;
+  padding: 20px;
+  color: #f9fafb;
+  background-color: #111827;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  overflow-wrap: anywhere;
+  transition: border-color 0.2s ease;
+}
+
+.note-card:hover {
+  border-color: #6366f1;
+}
+
+.note-card h3 {
+  margin-bottom: 12px;
+  color: #f9fafb;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.note-content {
+  flex: 1;
+  margin-bottom: 20px;
+  color: #d1d5db;
+  white-space: pre-wrap;
+}
+
+.note-date {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+/* Responsive */
+
+@media (max-width: 992px) {
+  .notes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 576px) {
+  .app-title {
+    font-size: 24px;
+  }
+
   .notes-toolbar {
     gap: 12px;
   }
@@ -79,5 +247,18 @@
 
   .add-note-btn {
     flex-shrink: 0;
+    padding: 8px 12px;
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .note-form {
+    padding: 18px;
+  }
+
+  .empty-state {
+    padding: 32px 16px;
   }
 }
