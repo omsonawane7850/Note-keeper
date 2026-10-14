@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const NoteForm = ({ onAddNote, onClose }) => {
   const [title, setTitle] = useState("");
@@ -11,15 +11,18 @@ const NoteForm = ({ onAddNote, onClose }) => {
       return;
     }
 
-    onAddNote({
-      id: Date.now(),
+    const newNote = {
+      id: crypto.randomUUID(),
       title: title.trim(),
       content: content.trim(),
       createdAt: new Date().toLocaleDateString(),
-    });
+    };
+
+    onAddNote(newNote);
 
     setTitle("");
     setContent("");
+
     onClose();
   };
 

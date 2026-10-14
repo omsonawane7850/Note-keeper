@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "./components/Header";
 import NoteForm from "./components/NoteForm";
 import NoteCard from "./components/NoteCard";
@@ -10,6 +10,12 @@ const App = () => {
 
   const handleAddNote = (newNote) => {
     setNotes((prevNotes) => [newNote, ...prevNotes]);
+  };
+
+  const handleDeleteNote = (id) => {
+    setNotes((prevNotes) =>
+      prevNotes.filter((note) => note.id !== id)
+    );
   };
 
   return (
@@ -43,7 +49,9 @@ const App = () => {
         {notes.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon">📝</div>
+
             <h3>No notes yet</h3>
+
             <p>Create your first note to get started.</p>
 
             {!showForm && (
@@ -58,7 +66,11 @@ const App = () => {
         ) : (
           <div className="notes-grid">
             {notes.map((note) => (
-              <NoteCard key={note.id} note={note} />
+              <NoteCard
+                key={note.id}
+                note={note}
+                onDeleteNote={handleDeleteNote}
+              />
             ))}
           </div>
         )}
