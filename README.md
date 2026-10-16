@@ -5,6 +5,7 @@ A simple notes application built using React.js and Vite.
 ## Features
 
 - Add notes
+- Edit notes
 - Delete notes
 - Responsive design
 - Dark theme
