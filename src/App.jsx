@@ -7,6 +7,7 @@ import "./App.css";
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [editingNote, setEditingNote] = useState(null);
 
   const handleAddNote = (newNote) => {
     setNotes((prevNotes) => [newNote, ...prevNotes]);
@@ -16,6 +17,33 @@ const App = () => {
     setNotes((prevNotes) =>
       prevNotes.filter((note) => note.id !== id)
     );
+
+    if (editingNote?.id === id) {
+      handleCloseForm();
+    }
+  };
+
+  const handleEditNote = (note) => {
+    setEditingNote(note);
+    setShowForm(true);
+  };
+
+  const handleUpdateNote = (updatedNote) => {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) =>
+        note.id === updatedNote.id ? updatedNote : note
+      )
+    );
+  };
+
+  const handleCloseForm = () => {
+    setShowForm(false);
+    setEditingNote(null);
+  };
+
+  const handleOpenForm = () => {
+    setEditingNote(null);
+    setShowForm(true);
   };
 
   return (
@@ -31,7 +59,7 @@ const App = () => {
 
           <button
             className="btn btn-primary add-note-btn"
-            onClick={() => setShowForm(true)}
+            onClick={handleOpenForm}
           >
             + Add Note
           </button>
@@ -41,7 +69,9 @@ const App = () => {
           <div className="form-container mb-4">
             <NoteForm
               onAddNote={handleAddNote}
-              onClose={() => setShowForm(false)}
+              onUpdateNote={handleUpdateNote}
+              editingNote={editingNote}
+              onClose={handleCloseForm}
             />
           </div>
         )}
@@ -57,7 +87,7 @@ const App = () => {
             {!showForm && (
               <button
                 className="btn btn-outline-primary"
-                onClick={() => setShowForm(true)}
+                onClick={handleOpenForm}
               >
                 Create Your First Note
               </button>
@@ -69,6 +99,7 @@ const App = () => {
               <NoteCard
                 key={note.id}
                 note={note}
+                onEditNote={handleEditNote}
                 onDeleteNote={handleDeleteNote}
               />
             ))}

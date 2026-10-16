@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const NoteForm = ({ onAddNote, onClose }) => {
+const NoteForm = ({ onAddNote, onUpdateNote, editingNote, onClose }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+
+  useEffect(() => {
+    if (editingNote) {
+      setTitle(editingNote.title);
+      setContent(editingNote.content);
+    } else {
+      setTitle("");
+      setContent("");
+    }
+  }, [editingNote]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -11,24 +21,29 @@ const NoteForm = ({ onAddNote, onClose }) => {
       return;
     }
 
-    const newNote = {
-      id: crypto.randomUUID(),
-      title: title.trim(),
-      content: content.trim(),
-      createdAt: new Date().toLocaleDateString(),
-    };
-
-    onAddNote(newNote);
+    if (editingNote) {
+      onUpdateNote({
+        ...editingNote,
+        title: title.trim(),
+        content: content.trim(),
+      });
+    } else {
+      onAddNote({
+        id: crypto.randomUUID(),
+        title: title.trim(),
+        content: content.trim(),
+        createdAt: new Date().toLocaleDateString(),
+      });
+    }
 
     setTitle("");
     setContent("");
-
     onClose();
   };
 
   return (
     <form className="note-form" onSubmit={handleSubmit}>
-      <h3>Create a Note</h3>
+      <h3>{editingNote ? "Edit Note" : "Create a Note"}</h3>
 
       <div className="mb-3">
         <label htmlFor="note-title" className="form-label">
@@ -65,7 +80,7 @@ const NoteForm = ({ onAddNote, onClose }) => {
 
       <div className="d-flex gap-2">
         <button type="submit" className="btn btn-primary">
-          Save Note
+          {editingNote ? "Update Note" : "Save Note"}
         </button>
 
         <button
